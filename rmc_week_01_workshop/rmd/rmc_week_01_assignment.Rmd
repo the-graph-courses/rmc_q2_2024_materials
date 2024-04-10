@@ -1,0 +1,91 @@
+---
+title: "RMC Workshop Exercise: Week 1"
+subtitle: "Tidyverse and RMarkdown Practice"
+author: "YOUR NAME HERE"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    toc: true
+date: "`r Sys.Date()`"
+editor_options: 
+  chunk_output_type: inline
+  wrap: false
+---
+
+
+# Road Injuries of Motorcyclists in Colombia
+
+```{r include = FALSE}
+# Set chunk options
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r}
+# Load packages
+if(!require(pacman)) install.packages("pacman")
+"WRITE_YOUR_CODE_HERE"
+```
+
+
+## Police records of fatal motor accidents in Medellín
+
+
+```{r}
+# Data import with read_csv()
+col_accidents <- "WRITE_YOUR_CODE_HERE"
+```
+
+
+```{r}
+# Clean names
+col_accidents_clean <- col_accidents %>% 
+  "WRITE_YOUR_CODE_HERE"
+```
+
+
+```{r}
+# rename() and mutate()
+col_accidents_clean2 <- col_accidents_clean %>%
+  "WRITE_YOUR_CODE_HERE"
+```
+
+
+The dataset analysed in this report provides information about `r nrow(col_accidents_clean2)` deaths caused by motorcycle accidents in Medellín, a Colombian city, from 2012 to 2015. The data is sourced from medical and police certificates and can be accessed [here](https://zenodo.org/record/4836304).
+
+# Age and sex of motorcycle deaths
+
+```{r}
+# Create subset
+col_accidents_subset <- "WRITE_YOUR_CODE_HERE"
+```
+
+
+```{r}
+# Summarize data
+age_sex_table <- "WRITE_YOUR_CODE_HERE"
+```
+
+```{r}
+# Visualize summary data with ggplot() and geom_col()
+"WRITE_YOUR_CODE_HERE"
+```
+
+
+
+
+```{r}
+# Export summary data frame as a CSV to your "outputs" folder, using write_csv()
+"WRITE_YOUR_CODE_HERE"
+```
+
+
+
+```{r}
+# Save your ggplot to the "outputs" folder as an image file, using ggsave()
+"WRITE_YOUR_CODE_HERE"
+```
+
+
+
+
+

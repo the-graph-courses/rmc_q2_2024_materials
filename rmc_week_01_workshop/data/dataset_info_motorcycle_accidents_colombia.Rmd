@@ -1,0 +1,23 @@
+---
+title: "Dataset Description: Motorcycle Accidents in Colombia"
+author: "The GRAPH Courses Team"
+date: '`r format(Sys.Date(), "%B %Y")`'
+output: pdf_document
+---
+
+
+# Overview
+
+This dataset contains police records of deaths resulting from motorcycle-related road injuries in the city of Medellin between 2012 and 2015. It focuses exclusively on fatal incidents involving motorcyclists, both drivers and passengers. 
+
+# Data source
+
+Data was accessed from the Zenodo database  [**here**](https://zenodo.org/records/4836304).
+
+The relevant dataset at the linked site is called "Dataset 1.xlsx". In the second sheet of that xlsx file, you will find a data dictionary. 
+
+# Accompanying Research Study
+
+Citation: Porras Cataño SM, Grisales-Romero H (2021) Loss of years of healthy life due to road incidents of motorcyclists in the city of Medellin, 2012 to 2015. PLoS ONE 16(8): e0256758. https://doi.org/10.1371/journal.pone.0256758
+
+

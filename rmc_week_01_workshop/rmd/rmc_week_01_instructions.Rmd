@@ -1,0 +1,135 @@
+---
+title: "RMC Workshop Exercise: Week 1"
+subtitle: "Tidyverse and RMarkdown Practice"
+author: "The GRAPH Courses Team"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+    toc: true
+date: "`r Sys.Date()`"
+editor_options: 
+  chunk_output_type: inline
+  wrap: false
+---
+
+```{r include = FALSE}
+# packages
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(tidyverse, here, janitor, flextable)
+```
+
+# Introduction
+
+Welcome to your first workshop assignment! In this task, you'll be utilizing your understanding of Tidyverse and RMarkdown to create a short report. The purpose of this exercise is to reinforce your knowledge of the prerequities for this course.
+
+Please remember, the assignment is due by Friday, April 12, at 11:59 PM UTC. Although you're encouraged to work in groups for brainstorming, the final submission should be your individual effort. Once completed, submit your Rmd file on the Workshop 1 submission page.
+
+# Exercise Instructions
+
+Below you'll find a series of tasks that guide you through importing, cleaning, and analyzing a dataset. Follow each step carefully and ensure you meet the requirements for each section.
+
+## Edit the YAML Header
+
+Start by personalizing the YAML header of your RMarkdown file. Replace "YOUR NAME HERE" with your actual name and ensure the date is set to today’s date. This step helps in keeping track of your work and personalizes the report.
+
+## Package Loading
+
+For this assignment, you will need several packages from the tidyverse, as well as other useful packages for data manipulation and presentation. Use `pacman::p_load()` to load the following packages: `{tidyverse}`, `{here}`, `{janitor}`, and `{flextable}`.
+
+## Import and Clean the Dataset
+
+Your first major task is to import and clean the dataset provided for this exercise. Follow these steps:
+
+1.  **Import the Data**: The dataset is stored in a CSV file. Use `read_csv()` and ensure you use the `here()` function to specify a project-relative path to your data file.
+
+2.  **Read Additional Variable Information**: Refer to the provided PDF for descriptions and details about the dataset's variables.
+
+3.  **Clean Column Names**: Some columns, including the age group column, contain spaces making them challenging to work with in R. Utilize `clean_names()` from the `{janitor}` package to address this issue. Store the output as a data frame called `col_accidents_clean`.
+
+4.  **Rename and Transform Variables**:
+
+    -   The "condition" column should be renamed to "position". Use the `rename()` function to perform this change.
+
+    -   Additionally, change the `gender`, `position`, and `age_group` columns to factors using `mutate()`.
+
+    -   The result should be stored as a data frame called `col_accidents_clean2`.
+
+**Checkpoint**: Verify that your dataset has 416 rows and 11 columns.
+
+## Data Subset
+
+Create a subset of your data by doing the following:
+
+1.  Keep only the following columns using the `select()` function: `id`, `gender`, `age`, `age_group`, and `position`.
+
+2.  Use the `filter()` function to exclude any rows where the `position` is listed as "unknown".
+
+## Summarize Data
+
+Construct a summary table that displays the number of deaths per age group and gender. Use either the `count()` function from `{dplyr}` or a combination of `group_by()` and `summarize()`.
+
+**Checkpoint**: Verify that your dataset has 21 rows and 3 columns. The first few rows of your summary table should look like this:
+
++-----------+----------+---------+
+| age_group | gender   | n       |
+|           |          |         |
+| \<fctr\>  | \<fctr\> | \<int\> |
++:==========+:=========+========:+
+| 15-19     | female   | 8       |
++-----------+----------+---------+
+| 15-19     | male     | 44      |
++-----------+----------+---------+
+| 20-24     | female   | 14      |
++-----------+----------+---------+
+| 20-24     | male     | 80      |
++-----------+----------+---------+
+| 25-29     | female   | 3       |
++-----------+----------+---------+
+| 25-29     | male     | 67      |
++-----------+----------+---------+
+| 30-34     | female   | 14      |
++-----------+----------+---------+
+| 30-34     | male     | 53      |
++-----------+----------+---------+
+| 35-39     | female   | 5       |
++-----------+----------+---------+
+| 35-39     | male     | 32      |
++-----------+----------+---------+
+
+## Visualize Data
+
+Create a stacked bar plot using `{ggplot2}` to illustrate the number of deaths per age group, segmented by gender. You will need to use the `ggplot()` and `geom_col()` functions to create this plot.
+
+Customize your plot with themes, labels, titles, and captions via the `labs()` function. The plot should look something like this:
+
+![](age_sex_bar_example.jpg)
+
+## Export and Save Outputs
+
+Organize your outputs by creating an "outputs" folder within your project directory.
+
+1.  Export your summary table as a CSV file.
+
+2.  Use `ggsave()` to save your plot.
+
+Save both these files to your "outputs" folder. Make sure to use the `here()` function to specify your file paths.
+
+## Knit to HTML
+
+Finally, knit your RMarkdown document to an HTML file. Ensure that code echo is turned OFF for all chunks to produce a clean, readable report. Before submitting, review your HTML file to make sure everything appears as expected.
+
+## Challenge Section
+
+### Inline Code
+
+Throughout your report, replace placeholders with inline code to dynamically report findings. For example, you might need to report the number of rows in your cleaned dataset. Ensure these are accurately filled to reflect the current state of your data.
+
+If you’re looking for an additional challenge, try creating a line graph or bar graph to represent a time series of the
+
+number of deaths per year. Utilize the `select()`, `filter()`, `mutate()`, and plotting functions from `{ggplot2}` to complete this task.
+
+# Submit Your Work
+
+To submit your completed assignment, upload JUST YOUR Rmd file to the submission page. Make sure you can knit your document successfully to HTML before uploading to avoid any submission issues.
+
+Happy coding, and good luck!
