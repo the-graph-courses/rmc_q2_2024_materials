@@ -1,0 +1,60 @@
+---
+title: "Report on Motorcycle Accident Deaths in Colombia"
+subtitle: "Tidyverse and RMarkdown Practice"
+author: "YOUR NAME HERE" # Remember to add your name!
+output:
+  prettydoc::html_pretty:
+    theme: architect
+date: "`r Sys.Date()`"
+---
+
+```{r include = FALSE}
+# Set chunk options
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r}
+# TASK 1: LOAD THE REQUIRED PACKAGES
+if(!require(pacman)) install.packages("pacman")
+"WRITE_YOUR_CODE_HERE"
+```
+
+```{r}
+# TASK 2: IMPORT THE DATA
+col_accidents <- "WRITE_YOUR_CODE_HERE"
+```
+
+```{r}
+# TASK 3: CLEAN THE COLUMN NAMES 
+col_accidents_clean <- col_accidents %>% 
+  "WRITE_YOUR_CODE_HERE"
+```
+
+```{r}
+# TASK 4: RENAME AND TRANSFORM VARIABLES
+col_accidents_clean2 <- col_accidents_clean %>%
+  "WRITE_YOUR_CODE_HERE"
+```
+
+```{r}
+# TASK 5: CREATE A SUBSET
+col_accidents_subset <- "WRITE_YOUR_CODE_HERE"
+```
+
+```{r}
+# TASK 6: SUMMARIZE DATA
+age_sex_count <- "WRITE_YOUR_CODE_HERE"
+```
+
+```{r}
+# TASK 7: VISUALIZE SUMMARY DATA
+"WRITE_YOUR_CODE_HERE"
+```
+
+```{r}
+# TASK 8: EXPORT YOUR OUTPUTS
+"WRITE_YOUR_CODE_HERE"
+```
+
+
+
