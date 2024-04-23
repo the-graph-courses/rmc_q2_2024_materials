@@ -14,7 +14,7 @@ These tasks should be completed in the `week_01_assignment.Rmd` file. So you nee
 
 # TASK 1: LOAD THE REQUIRED PACKAGES
 
-Use `pacman::p_load()` to load the following packages: `{tidyverse}`, `{here}` and `{janitor}`.
+Use `pacman::p_load()` to load the following packages: `{tidyverse}`, `{here}`, `{janitor}` and `{reactable}`.
 
 # TASK 2: IMPORT THE DATA
 
@@ -29,7 +29,7 @@ Some columns, including the age group column, contain spaces that make them chal
 Transform the data by doing the following, and store the results as `col_accidents_clean2`:
 
 -   Rename the `condition` to `position`. Use the `rename()` function to perform this change.
--   Change the capitalization of the gender column to title case using `mutate()` and `str_to_title()`.
+-   Change the capitalization of the gender values ("male" and "female") to title case using `mutate()` and `str_to_title()`.
 
 # TASK 5: CREATE A SUBSET
 
@@ -42,7 +42,7 @@ Create a subset of your data by doing the following, and store it as `col_accide
 
 # TASK 6: SUMMARIZE DATA
 
-Construct a summary table that displays the number of deaths per age group and gender. Use either the `count()` function from `{dplyr}` or a combination of `group_by()` and `summarize()`.
+Using the subset created above, construct a summary table that displays the number of deaths per age group and gender. Use either the `count()` function from `{dplyr}` or a combination of `group_by()` and `summarize()`.
 
 **Checkpoint**: After this step, verify that your summary table has 21 rows and 3 columns. The first few rows of your summary table should look like this:
 
@@ -51,14 +51,16 @@ Construct a summary table that displays the number of deaths per age group and g
 |           |          |         |
 | \<fctr\>  | \<fctr\> | \<int\> |
 +:==========+:=========+========:+
-| 15-19     | female   | 8       |
+| 15-19     | Female   | 8       |
 +-----------+----------+---------+
-| 15-19     | male     | 44      |
+| 15-19     | Male     | 44      |
 +-----------+----------+---------+
-| 20-24     | female   | 14      |
+| 20-24     | Female   | 14      |
 +-----------+----------+---------+
-| 20-24     | male     | 80      |
+| 20-24     | Male     | 80      |
 +-----------+----------+---------+
+
+Render this table using reactable in your RMarkdown document.
 
 # TASK 7: VISUALIZE SUMMARY DATA
 
@@ -80,7 +82,7 @@ Save both these files to your "outputs" folder. Make sure to use the `here()` fu
 
 # TASK 9: KNIT YOUR RMARKDOWN DOCUMENT
 
-Finally, knit your RMarkdown document to an HTML file. Ensure that code echo is turned OFF for all chunks to produce a clean, readable report. Before submitting, review your HTML file to make sure everything appears as expected.
+Finally, knit your RMarkdown document to an HTML file. You can leave code echo on for this assignment, so that your code chunks are displayed in the final document.
 
 # Challenge Questions (optional)
 

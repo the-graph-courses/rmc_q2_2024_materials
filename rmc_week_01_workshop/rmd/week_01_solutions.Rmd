@@ -1,0 +1,112 @@
+---
+title: "Report on Motorcycle Accident Deaths in Colombia"
+subtitle: "Tidyverse and RMarkdown Practice"
+output:
+  prettydoc::html_pretty:
+    theme: architect
+date: "`r Sys.Date()`"
+---
+
+```{r include = FALSE}
+# Set chunk options
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+# Loading the required packages
+
+``Pacman`` is used to load the packages: *tidyverse*, *here* and *janitor*
+
+```{r echo=F}
+# TASK 1: LOAD THE REQUIRED PACKAGES
+if(!require(pacman)) install.packages("pacman")
+pacman::p_load(tidyverse,
+               here,
+               janitor)
+```
+
+# Importing the Data
+
+The Colombia motorcycle accidents dataset will be used.
+
+```{r echo=F}
+# TASK 2: IMPORT THE DATA
+col_accidents <- read_csv(here(file = "data/motorcycle_accidents_colombia.csv"))
+head(col_accidents)
+```
+
+# Data Cleaning
+
+Before we start our analysis, we need to clean the column names.
+
+```{r echo=F}
+# TASK 3: CLEAN THE COLUMN NAMES 
+col_accidents_clean <- col_accidents %>% 
+  clean_names()
+head(col_accidents_clean)
+```
+
+# Rename and Transform
+
+We will rename the column `condition` to `position` and transform the `gender` column to title case.
+
+```{r echo=F}
+# TASK 4: RENAME AND TRANSFORM VARIABLES
+col_accidents_clean2 <- col_accidents_clean %>%
+  rename(position = condition) %>% 
+  mutate(gender = str_to_title(gender))
+head(col_accidents_clean2)
+```
+
+# Accidents by Age group and gender
+
+We will create a subset of the data to include only the columns `id`, `gender`, `age`, `age_group`, and `position`. We will also filter out the rows where the `position` is unknown.
+
+```{r echo=F}
+# TASK 5: CREATE A SUBSET
+col_accidents_subset <- col_accidents_clean2 %>% 
+  select(id, gender, age, age_group, position) %>% 
+  filter(position != "unknown")
+
+```
+
+```{r echo=F}
+# TASK 6: SUMMARIZE DATA
+age_sex_count <- col_accidents_subset %>% 
+  group_by(age_group, gender) %>% 
+  summarise(count= n())
+reactable::reactable(age_sex_count)
+```
+
+
+# Summary Plot
+
+```{r echo=F}
+# TASK 7: VISUALIZE SUMMARY DATA
+
+death_plot<- 
+  ggplot(age_sex_count) +
+  aes(x = age_group, y = count, fill = gender) +
+  geom_col() +
+  geom_text(aes(label = count),
+            vjust = 1.1,
+            size = 3,
+            position = "stack") +
+  scale_fill_hue(direction = 1) +
+  theme_minimal()+
+  labs(x= "Age Group", 
+       y = "Number of deaths", 
+       title = "Number of deaths by Age Groups", 
+       fill = "Gender", 
+       subtitle = "The graph shows the number of deaths for each age group by gender",
+       caption = "R Master: TheGraph Network")
+
+death_plot
+```
+
+```{r echo=F}
+# TASK 8: EXPORT YOUR OUTPUTS
+
+write_csv(x = age_sex_count, file = here("outputs/age_sex_count.csv"))
+
+ggsave(plot = death_plot, filename = here("outputs/death_plot.png"))
+```
