@@ -1,0 +1,258 @@
+---
+title: "RMasterclass Week 5 workshop"
+subtitle: "Functions, Conditionals, and For Loops practice"
+author: "YOUR NAME HERE" # Remember to add your name!
+date: "08-05-2024"
+editor_options: 
+  chunk_output_type: inline
+  markdown: 
+    wrap: none
+---
+
+# Introduction
+
+Welcome to the first week of data manipulation! Please refer to the notes from the prework here:
+
+-   [Functions and Conditionals](https://the-graph-courses.github.io/fdar/FDAR_EN_functions_conditionals/FDAR_EN_functions_conditionals.html)
+-   [For Loops in R](https://the-graph-courses.github.io/fdar/FDAR_EN_loops/FDAR_EN_loops.html)
+
+# Load packages
+
+```{r}
+pacman::p_load(tidyverse, here, tools)
+```
+
+
+# Today's datasets
+
+We have 3 CSV files we will be joining together to work with today. 
+
+See hiv_datasets_info.txt in the "data" folder for more details.
+
+# Import data (TEACHER DEMO)
+
+In this week's Loops lesson, you've seen how to use  `read_csv()` within a `for` loop to import multiple datasets at a time. Today we will be doing something similar. 
+
+All the code chunks in this section have been written out for you already, you just need to run them. The instructor will explain any unfamiliar code during the workshop demo.
+
+## Extract paths and names
+First we want to create two vectors: 
+- One vector of the 3 file paths for each CSV
+- Another vector specifying what to name each CSV when it is imported as a data frame in R
+
+We can create both of these vectors using `list.files()`, `file_path_sans_ext()` and `basename()`.
+
+```{r}
+# Extract paths for all .csv files in the data folder
+hiv_data_paths <- list.files(here("data"),
+                             pattern = "*.csv",
+                             full.names = TRUE)
+# Inspect paths
+hiv_data_paths
+```
+
+
+```{r}
+# Create vector of data frame names
+df_names <- file_path_sans_ext(basename(hiv_data_paths))
+
+df_names
+```
+
+Using the `assign()` function, we read each CSV and match it to it's corresponding name. 
+```{r}
+# Read the 3 CSVs into R
+for (i in 1:length(hiv_data_paths)) {
+  assign(df_names[i], read_csv(hiv_data_paths[i]))
+         }
+```
+
+# Data wrangling 
+
+Let's start with some fill-in-the-blank code for simple data wrangling!
+
+## Joining all datasets into one
+
+The new cases dataset has fewer records than the total cases dataset. For example, there are several countries in the total cases data that are not in the new cases data:
+```{r}
+setdiff(hiv_total_cases$country, hiv_new_cases$country)
+```
+
+Let's join the dataset so that we only include countries that are present in BOTH datasets.
+
+```{r}
+# Fill in with the appropriate joining funciton
+hiv_new_total <- ________(hiv_new_cases, hiv_total_cases)
+```
+CHECKPOINT: You should have 1360 rows and 4 columns
+
+Now let's add the population data
+```{r}
+hiv_full <- left_join(hiv_new_total, ____________)
+```
+
+CHECKPOINT: You should have 1360 rows and 5 columns
+
+## Pivoting
+
+Instead of having separate columns for new case and total cases, let's collapse have just one column with case count, and another column telling us the type of cases counted. 
+
+```{r}
+# Fill in the appropriate pivoting function and columns to pivot
+hiv_long <- 
+  ____________(hiv_full, 
+             cols = c(________,
+                      ________),
+             values_to = "cases",
+             names_to = "type")
+```
+CHECKPOINT: You should have 2720 rows and 5 columns.
+
+# For loops for plotting
+
+Now that we have a long format dataset, we can use `hiv_long` to make a plot such as this:
+
+```{r}
+hiv_long %>% 
+  filter(country == "Bangladesh") %>% 
+  ggplot(aes(x = year, 
+             y = cases, 
+             color = type)) +
+  geom_line() +
+  labs(title = "HIV cases in Bangaldesh")
+```
+
+Now what if we want the same plot for a bunch of countries? Instead of copying the same code and changing the country name each time, we can write a loop for this.
+
+Take this example vector of 3 countries:
+```{r}
+country_list <- c("Afghanistan", "Gabon", "India")
+```
+
+Write a for loop to make the same plot for each of these countries. You should build on the the ggplot code used above to create the Bangladesh plot. 
+
+HINT: You will need to use a function like `paste()` to make sure the title changes for each country.
+```{r}
+# Answer
+for (___________) {
+  plot <- ________
+  ___________
+  ___________
+  ___________
+  print(plot)
+}
+```
+
+
+# Functions
+
+Is this section, you will write a function that that tells you whether the input number is equal to ten or not. It sounds simple, right? But we will be making it a little more complex at each step.
+
+A) Simple conditional 
+Let's say we have an object called `num`.
+```{r}
+num <- 11
+```
+
+Write a simple conditional statement that tells you if `num`) is a 10 or not. 
+If `num` is ten, the statement should print "It's a ten! :D". 
+
+If `num` is not ten, the statement should print "Not a ten :(".
+
+```{r}
+# if else statement
+"WRITE_YOUR_CODE_HERE"
+```
+
+Test your statement with different numbers to make sure it works! 
+
+B) Simple function
+
+Turn your `if` `else` statement into a function called `IsItTen`. It should take a single argument `num`. 
+ 
+```{r}
+IsItTen <- function(num) {
+  "WRITE_YOUR_CODE_HERE"
+  } 
+```
+
+
+Test your `IsItTen` function on the following values:
+- 10
+- 17 
+- "ten"
+
+```{r}
+# Test
+IsItTen(10)
+IsItTen(17)
+IsItTen("ten")
+```
+We will get the "Not a ten :(" message when using `IsItTen` on the character string `"ten"`. However, this is not technically correct. Let's limit our inputs to only numeric values.
+
+C) Modify your function to include an argument check. If the input `num` is not numeric, the function should throw an informative error message.
+
+HINT: You can use the functions `stop()` - or `stopifnot()` - and `is.numeric()`.
+
+```{r}
+IsItTenNum <- function(num) {
+  "WRITE_YOUR_CODE_HERE"
+  } 
+```
+
+
+Now, the third one should give an error message.
+```{r}
+IsItTenNum(10)
+IsItTenNum(17)
+IsItTenNum("ten")
+```
+
+But what if we run out function on a number that is not a whole number? 
+
+For example:
+```{r}
+IsItTenNum(10.025)
+```
+We may want to count this as a ten, since it's close enough. We can use `round()` to do so:
+```{r}
+IsItTenNum(round(10.025))
+```
+D) Let's make the function even more flexible. Add an optional second argument called `round` that defaults to `FALSE`. If `round` is set to `TRUE`, the function should round the input `num` before checking if it equals 10.
+
+```{r}
+IsItTenRound <- function(num, round = FALSE) {
+  "WRITE_YOUR_CODE_HERE"
+  } 
+```
+
+
+Test your new `IsItTenRound` function on the following:
+
+```{r}
+IsItTenRound(10.1)
+IsItTenRound(10.1, round = TRUE)
+```
+
+Great job! The function now works on numbers that round to 10. The last step is to make it work on vectors.
+
+E) Modify `IsItTenRound` once more to accept a numeric vector `num_vec` as input. Use an `ifelse` statement to check each element of the vector and return "It's a ten! :D" if the (optionally rounded) element equals 10, and "Not a ten :(" if it does not. 
+
+
+Be sure to update the argument check at the beginning of the function to throw an error if *any* element of `num_vec` is non-numeric.
+
+
+```{r}
+AreTheyTens <- function(num_vec, round = FALSE) {
+  "WRITE_YOUR_CODE_HERE" 
+}
+```
+
+Test your vectorized function on the vector `test_vec` defined below, with and without rounding.
+
+```{r}
+test_vec <- c(10, 17, 10.4, 11, 14)
+
+AreTheyTens(test_vec)
+AreTheyTens(test_vec, round = TRUE)
+```
