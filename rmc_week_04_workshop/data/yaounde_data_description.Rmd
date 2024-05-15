@@ -1,0 +1,23 @@
+Three data sets were produced in this survey:
+
+# Phase 1
+`household_data`: This is the data set of the surveyed households, and contains the following variables:
+
+`household_code`: Code number assigned to each surveyed household
+`zone_num`: Number of the survey zone 
+`type_residency`: Residential area of the household, either urban or peri-urban 
+`household_size`: Number of people living in the household at the time of the survey 
+`name_water_point`: name of the nearest water point where the household gets its supply 
+`name_surveyor`: Name of the investigator who collected the data in the household and among the children living in this household
+`sex_head_household`: Sex of the head of the household
+
+
+# Phase 2 and 3
+`child_data_day_07`: This is the follow-up data for children on Day 7 (and on Day 21 for the `child_data_day_21` data set). Contains the following variables
+
+`household_id`: Number assigned to the household where the child was included. Number randomly assigned for street children 
+`child_id`: Order number of inclusion of the child in the household. The first child included in the household takes the letter A, the second the letter B, and so on. The ordering starts at A in the following household. 
+`deworming`: Notion of deworming of the child within the 7 days preceding the survey 
+`drugs`: Notion of medication taken within the 07 days preceding the survey 
+`diarrhea`: Notion of diarrhea within the 07 days preceding the survey
+
