@@ -17,5 +17,3 @@ head(outbreaks::fluH7N9_china_2013)
 # HOME 
 
 # DOWNLOAD DATA
-
-# ABOUT
