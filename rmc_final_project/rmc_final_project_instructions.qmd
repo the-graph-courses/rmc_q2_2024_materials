@@ -27,19 +27,19 @@ This project is a culmination of the skills and knowledge you've gained througho
 
 ## Data Sources
 
-You should choose one or several datasets on global indicators from [Gapminder's data repository](https://gapminder.org/data). Gapminder provides a vast repository of country-level statistics on a wide range of topics, including health, education, economy, environment, and gender. 
+You should choose one or several datasets on global indicators from [Gapminder's data repository](https://gapminder.org/data){target='_blank'}. Gapminder provides a vast repository of country-level statistics on a wide range of topics, including health, education, economy, environment, and gender. 
 
-While Gapminder is recommended for its ease of access and breadth of indicators, you are welcome to to explore other datasets that might offer other details. But these must be a global datasets with country-level data. Possible aditional sources are the [WHO World Malaria Report](https://www.who.int/teams/global-malaria-programme/reports/world-malaria-report-2023), [World Bank Open Data](http://data.worldbank.org/), or [IHME \| GHDx](https://ghdx.healthdata.org/series/global-burden-disease-gbd).
+While Gapminder is recommended for its ease of access and breadth of indicators, you are welcome to to explore other datasets that might offer other details. But these must be a global datasets with country-level data. Possible aditional sources are the [WHO World Malaria Report](https://www.who.int/teams/global-malaria-programme/reports/world-malaria-report-2023), [World Bank Open Data](http://data.worldbank.org/){target='_blank'}, or [IHME \| GHDx](https://ghdx.healthdata.org/series/global-burden-disease-gbd){target='_blank'}.
 
 ## Exploring Gapminder datasets
 
-1.  Visit the [Gapminder's data repository](https://gapminder.org/data) and browse the indicators from the dropdown menu. You can use the search box to look for topics of interest.
+1.  Visit the [Gapminder's data repository](https://gapminder.org/data){target='_blank'} and browse the indicators from the dropdown menu. You can use the search box to look for topics of interest.
 
 2.  Preview the spreadsheet and read more about the indicator. Ensure the dataset is relatively complete with minimal missing entries, especially in recent years. You can click on the icons in "VIEW AS: 🎈〽️" to visualize the data as a bubble plot or lin
 
     ![](images/gapminder_data_preview.png)
 
-3.  You can also create exploratory visualizations of any indicator with [Gapminder tools](https://www.gapminder.org/tools/). By default, it shows bubble plot of Life expectancy vs. GDP per capita, sized by Population, but you can customize the plot by choosing different indicators or different types of visualizations
+3.  You can also create exploratory visualizations of any indicator with [Gapminder tools](https://www.gapminder.org/tools/){target='_blank'}. By default, it shows bubble plot of Life expectancy vs. GDP per capita, sized by Population, but you can customize the plot by choosing different indicators or different types of visualizations
 
     ![](images/gapminder_tools_menu.png)
 
@@ -61,7 +61,7 @@ Here are a few steps and considerations for selecting your data:
 
 Choose indicators that appeal to you and download the data in CSV format using the "DOWNLOAD AS: ⏬CSV" option.
 
-Gapminder also provides country metadata [here](https://docs.google.com/spreadsheets/d/1qHalit8sXC0R8oVXibc2wa2gY7bkwGzOybEMTWp-08o/edit). This contains useful variables you may want to join with your indicator dataset. Key variables of interest might be:
+Gapminder also provides country metadata [here](https://docs.google.com/spreadsheets/d/1qHalit8sXC0R8oVXibc2wa2gY7bkwGzOybEMTWp-08o/edit){target='_blank'}. This contains useful variables you may want to join with your indicator dataset. Key variables of interest might be:
 
 -   **Country codes**: Standardized 3-letter country codes, same as ISO. Useful for joining with other datasets.
 
@@ -192,7 +192,7 @@ ggplotly(gg)
 
 ## Deploying to GitHub Pages
 
-You should deploy your dashboard to GitHub Pages for easy access and sharing. Consult the lesson on [Deploying Dashboards with Quarto](https://thegraphcourses.org/courses/rmc-q2-2024/topics/dashboards-with-quarto/) for instructions on how to set up your GitHub repository and deploy your dashboard.
+You should deploy your dashboard to GitHub Pages for easy access and sharing. Consult the lesson on [Deploying Dashboards with Quarto](https://thegraphcourses.org/courses/rmc-q2-2024/topics/dashboards-with-quarto/){target='_blank'} for instructions on how to set up your GitHub repository and deploy your dashboard.
 
 # Grading Rubric
 
