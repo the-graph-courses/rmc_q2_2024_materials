@@ -5,6 +5,7 @@ format:
     theme: cosmo
     toc: true
     toc_depth: 3
+    embed-resources: true
 ---
 
 ```{r echo = F, message = F}
