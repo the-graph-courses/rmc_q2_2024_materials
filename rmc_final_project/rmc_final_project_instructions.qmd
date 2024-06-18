@@ -16,27 +16,24 @@ pacman::p_load(tidyverse,
 
 # Introduction
 
-This project is a culmination of the skills and knowledge you've gained throughout the course. Your task is to create an interactive dashboard published to GitHub Pages, showcasing global statistics in a visually engaging way. You will choose one or several datasets on global indicators from Gapminder or other sources, clean and prepare the data, and create a multi-page dashboard with interactive visualizations.
+This project is a culmination of the skills and knowledge you've gained throughout the course. Your task is to create an interactive dashboard published to GitHub Pages, showcasing global statistics in a visually engaging way. You will choose one or several datasets on global indicators from Gapminder or other sources, clean and prepare the data, and create a multi-page quarto dashboard with interactive visualizations.
+
+# Timeline and Deadlines
+
+-   **Preliminary Peer Review**: June 26, 2024. During our final workshop, you will present a draft of one page of your dashboard to a group of peers and instructors for feedback.
+-   **Final Deadline**: July 12, 2024, 23:59 UTC. You will submit a ZIP file of your repository and a link to the deployed dashboard on GitHub Pages.
 
 # Data Requirements and Acquisition
 
 ## Data Sources
 
-Choose a dataset on global indicators from [Gapminder's data repository](https://gapminder.org/data). Gapminder provides a vast repository of country-level statistics on a wide range of topics, including but not limited to:
+You should choose one or several datasets on global indicators from [Gapminder's data repository](https://gapminder.org/data). Gapminder provides a vast repository of country-level statistics on a wide range of topics, including health, education, economy, environment, and gender. 
 
--   **Health** (e.g., disease incidence, maternal health, mortality rates)
--   **Education** (e.g., literacy rates, school enrollment rates)
--   **Economy** (e.g., income inequality, poverty rates, employment rates)
--   **Environment** (e.g., CO2 emissions, energy consumption)
--   **Gender** (e.g., gender equality, female labor force participation)
-
-The data is available to download in CSV files which you can then import, clean, and analyze.
+While Gapminder is recommended for its ease of access and breadth of indicators, you are welcome to to explore other datasets that might offer other details. But these must be a global datasets with country-level data. Possible aditional sources are the [WHO World Malaria Report](https://www.who.int/teams/global-malaria-programme/reports/world-malaria-report-2023), [World Bank Open Data](http://data.worldbank.org/), or [IHME \| GHDx](https://ghdx.healthdata.org/series/global-burden-disease-gbd).
 
 ## Exploring Gapminder datasets
 
 1.  Visit the [Gapminder's data repository](https://gapminder.org/data) and browse the indicators from the dropdown menu. You can use the search box to look for topics of interest.
-
-    ![]()![](images/gapminder_data_menu-01.png)
 
 2.  Preview the spreadsheet and read more about the indicator. Ensure the dataset is relatively complete with minimal missing entries, especially in recent years. You can click on the icons in "VIEW AS: 🎈〽️" to visualize the data as a bubble plot or lin
 
@@ -72,19 +69,7 @@ Gapminder also provides country metadata [here](https://docs.google.com/spreadsh
 
 -   **Income groups**: Can be converted to an ordered factor variable for visualizing relationships between income level your indicator.
 
-## Additional Data Sources
-
-While Gapminder is recommended for its ease of access and breadth of indicators, you are welcome to to explore other datasets that might offer richer details. For example, the [WHO World Malaria Report](https://www.who.int/teams/global-malaria-programme/reports/world-malaria-report-2023) provides data on malaria cases and deaths from 2010-2022, available for download as Excel files.
-
-Other websites to explore are:
-
--   [World Bank Open Data](http://data.worldbank.org/)
-
--   [IHME \| GHDx](https://ghdx.healthdata.org/series/global-burden-disease-gbd)
-
-These sources may require more complex data cleaning processes.
-
-# Data Cleaning and Preparation
+# Tips for Data Cleaning and Preparation
 
 ## Pivoting Data
 
@@ -92,7 +77,7 @@ Gapminder indicator datasets are provided in a wide format with one row per coun
 
 ## Numeric Conversion
 
-Convert string representations of numbers (like "20k" or "2M") into actual numeric values using the `{stringr}` package.
+You will likely need to convert string representations of numbers (like "20k" or "2M") into actual numeric values using the `{stringr}` package.
 
 ```{r}
 # Demo of how to convert values with string suffixes to numeric
@@ -105,19 +90,17 @@ x %>%
   as.numeric()
 ```
 
-## Country Name Standardization
+## Country Name Standardization (conversion to ISO codes)
 
-Use the `{countrycode}` package to align country names with their ISO codes, ensuring accurate merges with geospatial data.
-
-Alternatively, you can join your Gapminder indicator data with the Gapminder geographic metadata by country name, and use the `geo` column as the ISO code. The country names in these two datasets will match exactly, since they are both compiled by Gapminder.
+To avoid data loss during joins, you may need to standardize country names across datasets. You can do this by using the `{countrycode}` package to align country names with their ISO codes. Or you can join the Gapminder indicator data with the Gapminder geographic metadata by country name, and use the `geo` column as the ISO code. 
 
 ## Adding Country Polygons
 
-Use the `{rnaturalearth}` package to download the country polygons. This data provides the geographical shapes necessary for plotting your world map.
+We recommend the `{rnaturalearth}` package to download the country polygons for your world map.
 
 After aligning the country names or ISO codes between your datasets, merge the Gapminder data with the country polygons.
 
-# Dashboard Creation
+# Dashboard Creation Guidelines
 
 ## Project Repository Structure
 
@@ -131,11 +114,11 @@ Organize your project repository as follows:
 
 -   `/data`: Data folder
 
-    -   `/data/*.csv`: Your dataset(s) in CSV format
-
-    -   `/data/README.md`: Metadata about your dataset including information on provenance, codebook, variable definitions, etc.
-
 -   `/images`: Images folder
+
+-   `README.md`: (optional) Project description, data sources, and any additional information.
+
+(Since we have not taught you about `README`s and `.md` files, including a README.md file is optional. However, if you skip it, you should include information about your data sources in your main project dashboard.)
 
 ## Quarto Setup
 
@@ -160,7 +143,7 @@ execute:
 ---
 ```
 
-Set up your environment with the required libraries:
+Set up your environment with the required libraries. You are likely to need the following packages:
 
 ```{r}
 # Load packages 
@@ -179,45 +162,35 @@ pacman::p_load(tidyverse,
                )
 ```
 
-## Dashboard Layout
+## Dashboard Layout and Design
 
-Create a multi-page dashboard using Quarto. Divide each page into sections using headings, and organize your content into rows and/or columns to create a visually appealing layout.
+### Requirements:
 
-**Requirements:**
+- **Pages**: At least 2 pages
+- **Elements**: At least 8 elements (value boxes, tables, plots, or other interactive visualizations) in total
+- **World Map**: Should include at least one world map (using an interactive plotting library like `{plotly}` or `{highcharter}`). This should be an interactive choropleth or dot map that allows users to explore your chosen indicator by country and year.
 
--   At least 2 pages
--   At least 8 elements (value boxes, tables, plots, or other interactive visualizations) in total.
+### Enhancing User Experience:
 
-## Dashboard Features
+Your dashboard should be both informative and engaging, using Quarto features to enhance user experience. Consider the following:
 
-Your dashboard should not only be informative but also engaging and easy to navigate. Incorporate various Quarto features to enhance user experience, such as:
+- **Statistical Highlights**: Use value boxes to display key statistics, such as the highest and lowest values for the selected indicator, or significant year-on-year changes. Highlight interesting geographical trends, such as a country that deviates significantly from regional norms.
 
--   **Statistical Highlights**: Use value boxes to display key statistics, such as the highest and lowest values for the selected indicator, or significant year-on-year changes. Highlight interesting geographical trends, such as a country that deviates significantly from regional norms.
+- **Professional Aesthetics**: Apply an elegant theme and color palette to ensure a professional appearance. Customize plot aesthetics beyond the defaults, and make sure each visualization is accompanied by a descriptive title, clear legends, and annotated axes.
 
--   **Professional Aesthetics**: Employ custom themes and color palettes to make the visual presentation as professional as possible.
-
-## Visualization Requirements
-
--   **World Map**: Use `{ggplot2}` and the `ggploty()` function from `{plotly}` to create an interactive choropleth or dot map that allows users to explore your chosen indicator by country and year.
-
--   **Additional Visualizations**: At least two other interactive charts or tables, such as scatter plots of GDP vs. health indicators or box plots segmented by continent.
-
--   Customize visual aesthetics significantly beyond the defaults to ensure a professional appearance. Each visualization should be accompanied by a descriptive title, clear legends, and annotated axes.
-
--   **Yearly Data Interaction**: Consider implementing a slider to allow viewers to see changes over time on the map. You can do this by adding a frame aesthetic to ggplot, and allows interactive, linked views of a series of frames over time.
+- **Yearly Data Interaction**: We recommend implementing a slider to allow viewers to see changes over time on the map. With `{plotly}`, you can do this by adding a frame aesthetic to `ggplot` to create linked views of a series of frames over time. An example is shown below:
 
 ```{r}
 gg <- gapminder::gapminder %>% 
-  ggplot(aes(x = gdpPercap, y = lifeExp, color = continent,
-             frame = year)) +
-  geom_point() +
-  scale_x_log10() +
-  theme_minimal()
+ ggplot(aes(x = gdpPercap, y = lifeExp, color = continent, frame = year)) +
+ geom_point() +
+ scale_x_log10() +
+ theme_minimal()
 
 ggplotly(gg)
 ```
 
-# Deploying to GitHub Pages
+## Deploying to GitHub Pages
 
 You should deploy your dashboard to GitHub Pages for easy access and sharing. Consult the lesson on [Deploying Dashboards with Quarto](https://thegraphcourses.org/courses/rmc-q2-2024/topics/dashboards-with-quarto/) for instructions on how to set up your GitHub repository and deploy your dashboard.
 
@@ -225,19 +198,19 @@ You should deploy your dashboard to GitHub Pages for easy access and sharing. Co
 
 ## Data Acquisition and Preparation (20 points)
 
--   **Selection of Relevant and Comprehensive Dataset**:
+-   **Relevant and Comprehensive Data**:
     -   Is the chosen dataset relevant and comprehensive for the project's objectives?
--   **Data Cleaning and Formatting**:
+-   **Data Cleaning**:
     -   Is the data properly cleaned and formatted where necessary?
--   **Joining with Additional Data Sources**:
+-   **Joining with Additional Data**:
     -   Are additional data sources integrated effectively, if necessary?
--   **Country Name Standardization**:
+-   **Name Standardization**:
     -   Where relevant, is country name standardization done correctly to avoid data loss during joins?
 
 ## Dashboard Design and Layout (15 points)
 
--   **Overall Aesthetics and Professional Appearance**:
-    -   Does the dashboard have a professional appearance, with a consistent theme and color palette?
+-   **Overall Aesthetics**:
+    -   Does the dashboard have a professional appearance, with an elegant theme and color palette?
 -   **Effective Use of Dashboard Features**:
     -   Are a variety of dashboard features like value boxes and interactive elements used effectively?
 -   **Appropriate Use of Section Headings and Layout**:
@@ -246,14 +219,15 @@ You should deploy your dashboard to GitHub Pages for easy access and sharing. Co
 ## Visualization Quality and Complexity (25 points)
 
 -   **Requirement Fulfillment**:
-    -   Does the dashboard meet the requirements of at least 2 pages, with at least 8 elements (value boxes, plots, and tables), including a map?
+    -   Are the requirements of at least 8 elements (value boxes, plots, and tables) met? 
+    -   Does the dashboard include at least one world map with interactive features?
 -   **Clarity of Visualizations**:
     -   Are the visualizations/tables clear and easy to understand?
     -   Do they effectively communicate the desired insights/statistics?
 -   **Customization**:
     -   Are the visualizations/tables well-customized, with clear titles and labels where relevant?
 -   **Advanced Features**:
-    -   Does the dashboard use at least one advanced feature, such as hover-over text, sliders or other {plotly} or {highcharter} features?
+    -   Does the dashboard use at least one advanced feature, such as hover-over text, sliders, dropdown menus, or other {plotly} or {highcharter} features?
 
 ## Documentation and Deployment (10 points)
 
@@ -273,13 +247,3 @@ You should deploy your dashboard to GitHub Pages for easy access and sharing. Co
     -   Does the project demonstrate originality and creativity in data visualization techniques and storytelling?
 -   **Insightful Visualization of Statistics and Patterns**:
     -   Does the work reveal insightful and interesting statistics and patterns?
-
-# Timeline and Deadlines
-
--   **Data Workshop**: June 21, 2024.
--   **Preliminary Peer Review**: June 28, 2024.
--   **Final Submission**: July 12, 2024.
-
-# Submission Instructions
-
-Submit a ZIP file of your repository and a link to the deployed dashboard on GitHub Pages through the course webpage by July 12, 2024.
