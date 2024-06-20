@@ -41,7 +41,7 @@ You should choose one or several datasets on global indicators from [Gapminder's
 
 While Gapminder is recommended for its ease of access and breadth of indicators, you are welcome to to explore other datasets that might offer other details. 
 
-These could be other global datasets with country-level data, such as those from the [WHO World Malaria Report](https://www.who.int/teams/global-malaria-programme/reports/world-malaria-report-2023), [World Bank Open Data](http://data.worldbank.org/){target='_blank'}, or [IHME \| GHDx](https://ghdx.healthdata.org/series/global-burden-disease-gbd){target='_blank'}. 
+These could be other global datasets with country-level data, such as those from the [WHO World Malaria Report](https://www.who.int/teams/global-malaria-programme/reports/world-malaria-report-2023){target='_blank'}, [World Bank Open Data](http://data.worldbank.org/){target='_blank'}, or [IHME \| GHDx](https://ghdx.healthdata.org/series/global-burden-disease-gbd){target='_blank'}. 
 
 Importantly, whatever dataset you select should have a geographical component that can be visualized on a map, as maps are a key requirement of the rubric (see further below).
 
