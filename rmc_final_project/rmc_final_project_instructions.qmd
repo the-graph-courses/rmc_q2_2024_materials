@@ -210,7 +210,7 @@ You should deploy your dashboard to GitHub Pages for easy access and sharing. Co
 
 # Grading Rubric
 
-## Data Acquisition and Preparation (20 points)
+## Data Acquisition and Preparation (25 points)
 
 -   **Relevant and Comprehensive Data**:
     -   Is the chosen dataset relevant and comprehensive for the project's objectives?
@@ -221,7 +221,7 @@ You should deploy your dashboard to GitHub Pages for easy access and sharing. Co
 -   **Name Standardization**:
     -   Where relevant, is country name standardization done correctly to avoid data loss during joins?
 
-## Dashboard Design and Layout (15 points)
+## Dashboard Design and Layout (25 points)
 
 -   **Overall Aesthetics**:
     -   Does the dashboard have a professional appearance, with an elegant theme and color palette?
@@ -243,7 +243,7 @@ You should deploy your dashboard to GitHub Pages for easy access and sharing. Co
 -   **Advanced Features**:
     -   Does the dashboard use at least one advanced feature, such as hover-over text, sliders, dropdown menus, or other {plotly} or {highcharter} features?
 
-## Documentation and Deployment (10 points)
+## Documentation and Deployment (15 points)
 
 -   **Well-Structured Repository**:
     -   Is the repository well-structured with appropriate folders?
